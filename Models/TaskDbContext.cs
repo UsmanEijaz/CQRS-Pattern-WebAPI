@@ -17,7 +17,6 @@ public partial class TaskDbContext : DbContext
 
     public virtual DbSet<TaskItem> TaskItems { get; set; }
 
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TaskItem>(entity =>
@@ -28,6 +27,7 @@ public partial class TaskDbContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Description).HasMaxLength(500);
+            entity.Property(e => e.Status).HasMaxLength(50);
             entity.Property(e => e.Title).HasMaxLength(100);
         });
 
